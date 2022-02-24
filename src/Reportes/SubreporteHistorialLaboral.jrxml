@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="555" pageHeight="802" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="b21fac82-a7d5-49f7-9ae5-b11794660d61">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Cedula" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     contratos_laborales.`Fecha_Cont` AS contratos_laborales_Fecha_Cont,
+     contratos_laborales.`Fecha_Ret` AS contratos_laborales_Fecha_Ret,
+     cargos.`Cargo` AS cargos_Cargo,
+     empleados.`Cedula` AS empleados_Cedula,
+     proyectos.`Proyecto` AS proyectos_Proyecto
+FROM
+     `cargos` cargos INNER JOIN `contratos_laborales` contratos_laborales ON cargos.`Id_Cargo` = contratos_laborales.`Id_Cargo`
+     INNER JOIN `empleados` empleados ON contratos_laborales.`Id_Empleado` = empleados.`Id_Empleado`
+     INNER JOIN `proyectos` proyectos ON contratos_laborales.`Id_Proyecto` = proyectos.`Id_Proyecto`
+WHERE
+     cedula = $P{Cedula}
+ORDER BY
+     Id_Contrato ASC]]>
+	</queryString>
+	<field name="contratos_laborales_Fecha_Cont" class="java.lang.String"/>
+	<field name="contratos_laborales_Fecha_Ret" class="java.lang.String"/>
+	<field name="cargos_Cargo" class="java.lang.String"/>
+	<field name="empleados_Cedula" class="java.lang.Integer"/>
+	<field name="proyectos_Proyecto" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="21">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="8533ded4-8145-4be8-b247-aeb0c429621f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cargo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="365" y="1" width="62" height="20" uuid="0529fbd0-3174-4a6e-8ba9-9dcc5c6da768"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[F Ingreso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="446" y="1" width="72" height="20" uuid="6030285a-515a-4197-b570-9d2e5756af03"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[F Retiro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="219" y="0" width="62" height="20" uuid="5be657d6-58ba-4e45-bcd3-38e3c6aa3ab0"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Proyecto]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField>
+				<reportElement x="365" y="0" width="62" height="13" uuid="f456ddf3-32ae-43c0-b7ac-4824d50c7f62"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{contratos_laborales_Fecha_Cont}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="446" y="0" width="72" height="13" uuid="83f7d22c-2212-49b6-9188-7defd0f90d2c"/>
+				<textFieldExpression><![CDATA[$F{contratos_laborales_Fecha_Ret}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="204" height="13" uuid="2f8ce07e-e6da-4d4a-b4da-6cf653427903"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cargos_Cargo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="219" y="0" width="120" height="13" uuid="0cb227a7-5f91-4535-9757-e40d46093b5f"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{proyectos_Proyecto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CertificadoFunciones" language="groovy" pageWidth="572" pageHeight="752" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2545ffcc-bd07-4f61-bedb-1dd41e58a8a3">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1" uuid="b930001a-8025-40b0-80b5-1e1eea97c4ad"/>
+	<parameter name="Cedula" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["S:\\SISTEMAS\\BD RECURSO HUMANO\\BDRecursoHumano\\src\\Reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     DISTINCTROW contratos_laborales.`Id_Empleado` AS contratos_laborales_Id_Empleado,
+     cargos.`Cargo` AS cargos_Cargo,
+     cargos.`Proposito` AS cargos_Proposito,
+     cargos.`Dependencia` AS cargos_Dependencia,
+     empleados.`Cedula` AS empleados_Cedula,
+     cargos.`Id_Proyecto` AS cargos_Id_Proyecto,
+     cargos.`Id_Cargo` AS cargos_Id_Cargo
+FROM
+     `cargos` cargos INNER JOIN `contratos_laborales` contratos_laborales ON cargos.`Id_Cargo` = contratos_laborales.`Id_Cargo`
+     INNER JOIN `empleados` empleados ON contratos_laborales.`Id_Empleado` = empleados.`Id_Empleado`
+WHERE
+     cedula = 1042063200
+ORDER BY
+     Id_Contrato DESC]]>
+	</queryString>
+	<field name="contratos_laborales_Id_Empleado" class="java.lang.Integer"/>
+	<field name="cargos_Cargo" class="java.lang.String"/>
+	<field name="cargos_Proposito" class="java.lang.String"/>
+	<field name="cargos_Dependencia" class="java.lang.String"/>
+	<field name="empleados_Cedula" class="java.lang.Integer"/>
+	<field name="cargos_Id_Proyecto" class="java.lang.Integer"/>
+	<field name="cargos_Id_Cargo" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement positionType="Float" x="0" y="0" width="140" height="20" uuid="a8b29eb8-5a06-417a-a1fe-667ff67494b4"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Responsabilidades:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="31" width="340" height="20" uuid="54944c60-195c-4ef0-83b4-e7b7203566f0"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[A la fecha se le esta notificando sus responsabilidades, como:]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="193" splitType="Stretch">
+			<staticText>
+				<reportElement positionType="Float" x="51" y="30" width="173" height="20" uuid="4899060f-f1a4-40f9-9fd4-d05eaf7cc5f3"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Proposito (Mision del Cargo)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="51" y="85" width="161" height="20" uuid="9fe2a5b7-1b34-4483-814a-bfc4c1a54501"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dependencia Inmediata:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="52" y="116" width="312" height="20" uuid="49724cd4-73c7-4497-bdf2-6decd0f2fcda"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Responsabilidades Generales:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="27" y="30" width="24" height="20" uuid="4bd5e05e-70a2-48aa-9125-84639518b25e"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial Black" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[>]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="28" y="85" width="23" height="20" uuid="9d09e0fb-8da9-4abc-ae61-b9ad257f0f7e"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial Black" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[>]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="29" y="116" width="23" height="20" uuid="bde20c94-dad9-4dfd-b776-15bb0daaae58"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial Black" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[>]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="42" y="0" width="459" height="20" uuid="6118f954-f4e1-410f-a02d-e47aa21a5ba2"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cargos_Cargo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="0" y="50" width="501" height="20" uuid="14cb8db9-c973-4cd9-bbdc-02f056fb0833"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cargos_Proposito}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="212" y="85" width="289" height="20" uuid="a7a13908-725c-47ca-9d99-c6cdd058ca36"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cargos_Dependencia}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="0" width="42" height="20" uuid="d3a0791c-43ff-4d50-b489-53f5b3c4fe67"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cargo:]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="0" y="146" width="572" height="47" uuid="3eaf6a08-0a08-4d76-9906-2e505a21582d"/>
+				<subreportParameter name="IdCargo">
+					<subreportParameterExpression><![CDATA[$F{cargos_Cargo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="IdProyecto">
+					<subreportParameterExpression><![CDATA[$F{cargos_Id_Proyecto}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\BD TALENTO HUMANO\\BDTalentoHumano\\src\\Reportes\\SubreporteResponsabilidades.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

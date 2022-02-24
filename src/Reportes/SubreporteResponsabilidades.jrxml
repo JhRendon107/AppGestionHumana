@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CertificadoFunciones" language="groovy" pageWidth="572" pageHeight="752" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2545ffcc-bd07-4f61-bedb-1dd41e58a8a3">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1" uuid="b930001a-8025-40b0-80b5-1e1eea97c4ad"/>
+	<subDataset name="dataset2" uuid="31fcb34b-66cb-410f-b55b-24f313e5832b"/>
+	<subDataset name="dataset3" uuid="d2cba491-b9bd-4066-ab8d-56b34f1ed73f"/>
+	<parameter name="IdCargo" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="IdProyecto" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     responsabilidades.`Responsabilidad` AS responsabilidades_Responsabilidad,
+     responsabilidades.`Id_Proyecto` AS responsabilidades_Id_Proyecto,
+     responsabilidades.`Id_Cargo` AS responsabilidades_Id_Cargo
+FROM
+     `responsabilidades` responsabilidades
+WHERE
+     Id_Proyecto = 1 and Id_Cargo = 37]]>
+	</queryString>
+	<field name="responsabilidades_Responsabilidad" class="java.lang.String"/>
+	<field name="responsabilidades_Id_Proyecto" class="java.lang.Integer"/>
+	<field name="responsabilidades_Id_Cargo" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="12" height="20" uuid="23547080-bf82-419b-b4df-47a4e07fa112"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial Black" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[-]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="12" y="0" width="492" height="20" uuid="1d299f11-9dde-4566-99f9-ca0788310c9e"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{responsabilidades_Responsabilidad}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

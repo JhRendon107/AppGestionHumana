@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Certificado" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="de6719a6-d1cc-4f6b-bad6-c8bc09c224b5">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="48"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["S:\\SISTEMAS\\BD RECURSO HUMANO\\BDRecursoHumano\\src\\Reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Id_Contrato" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Nombre_Apellidos" class="java.lang.String"/>
+	<parameter name="Cedula" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Firma" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     contratos_laborales.`Id_Contrato` AS contratos_laborales_Id_Contrato,
+     empleados.`Cedula` AS empleados_Cedula,
+     cargos.`Cargo` AS cargos_Cargo,
+     contratos_laborales.`Salario` AS contratos_laborales_Salario,
+     contratos_laborales.`Tipo_Contrato` AS contratos_laborales_Tipo_Contrato,
+     contratos_laborales.`Fecha_Cont` AS contratos_laborales_Fecha_Cont,
+     contratos_laborales.`Fecha_Ret` AS contratos_laborales_Fecha_Ret,
+     proyectos.`Proyecto` AS proyectos_Proyecto
+FROM
+     `empleados` empleados INNER JOIN `contratos_laborales` contratos_laborales ON empleados.`Id_Empleado` = contratos_laborales.`Id_Empleado`
+     INNER JOIN `cargos` cargos ON contratos_laborales.`Id_Cargo` = cargos.`Id_Cargo`
+     INNER JOIN `proyectos` proyectos ON contratos_laborales.`Id_Proyecto` = proyectos.`Id_Proyecto`
+     AND proyectos.`Id_Proyecto` = cargos.`Id_Proyecto`
+WHERE 
+   Id_Contrato = $P{Id_Contrato}]]>
+	</queryString>
+	<field name="contratos_laborales_Id_Contrato" class="java.lang.Integer"/>
+	<field name="empleados_Cedula" class="java.lang.Integer"/>
+	<field name="cargos_Cargo" class="java.lang.String"/>
+	<field name="contratos_laborales_Salario" class="java.math.BigDecimal"/>
+	<field name="contratos_laborales_Tipo_Contrato" class="java.lang.String"/>
+	<field name="contratos_laborales_Fecha_Cont" class="java.lang.String"/>
+	<field name="contratos_laborales_Fecha_Ret" class="java.lang.String"/>
+	<field name="proyectos_Proyecto" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="144" splitType="Stretch">
+			<staticText>
+				<reportElement x="186" y="94" width="203" height="20" uuid="dda0dde1-5572-4278-a568-0d3ece981806"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[A QUIEN PUEDA INTERESAR ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="238" y="114" width="100" height="20" uuid="c7337903-8bbb-447e-b98b-84df0c4e8762"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CERTIFICO:]]></text>
+			</staticText>
+			<textField pattern="EEEEE,  dd  MMMMM  yyyy">
+				<reportElement x="102" y="74" width="200" height="20" uuid="86a1f58f-559e-4eb5-8ecf-77230574b8f7"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="46" y="74" width="56" height="20" uuid="cab2ff3f-0b2d-4ff5-8418-5da4a4cd5992"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Medellín,]]></text>
+			</staticText>
+			<image>
+				<reportElement x="185" y="0" width="289" height="50" uuid="a2b244d8-dafa-4b32-a890-2311222d759d"/>
+				<imageExpression><![CDATA["C:\\BD TALENTO HUMANO\\BDTalentoHumano\\src\\Imagenes\\LogoConsultel2.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<detail>
+		<band height="221">
+			<line>
+				<reportElement x="36" y="201" width="501" height="2" uuid="c52dd9ee-15a3-4e91-b854-7ca85cf22522"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="48" y="0" width="144" height="20" uuid="19aa98b3-5a60-4e90-a1b0-899f610b029c"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="48" y="20" width="144" height="20" uuid="db49cfae-e068-42d4-92f3-f7a7f00d4d85"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Cedula:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="48" y="80" width="127" height="20" uuid="a78857dc-b1ca-45d8-af77-bf7531c4f641"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Contrato:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="48" y="120" width="127" height="20" uuid="061eaed4-3cbd-406a-b3da-f60b282a793f"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Salario:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="48" y="161" width="127" height="20" uuid="0c2f3346-1dd3-44b2-b9fb-e7e4f17e0888"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Contratado:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="48" y="100" width="127" height="20" uuid="0896143f-a2ab-4bea-9a57-c0096db38032"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Cargo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="192" y="0" width="380" height="20" uuid="1e7f16e2-a61f-45aa-86be-c93565a10890"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{Nombre_Apellidos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="175" y="120" width="10" height="20" uuid="cf625e3e-3598-42d6-8229-074a930877cf"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[$]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="48" y="40" width="427" height="20" uuid="b8552eaa-3d0b-44aa-9461-f2f2bb4be895"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Laboró para Consultel S.A.S con el siguinete Historial: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="204" y="60" width="191" height="20" uuid="88324a91-46ca-443a-b211-618bcb37401a"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Ultimo Cargo Desempeñado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="48" y="141" width="127" height="20" uuid="581e1d06-639e-4483-841b-705dc1bee6cb"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Tipo de Contrato:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="48" y="181" width="127" height="20" uuid="ce7f2ec6-9386-45a2-9828-8ab8014081cc"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Retiro:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="62" y="201" width="266" height="20" uuid="e9f47aad-364c-4e6e-8d4c-44482511341a"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Historial Contratos Anteriores]]></text>
+			</staticText>
+			<textField pattern="#,##0">
+				<reportElement x="192" y="20" width="379" height="20" uuid="31f502ee-7fdb-46a5-a7d8-60a5711ab62b"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empleados_Cedula}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="175" y="80" width="396" height="20" uuid="cec1f5ea-91ab-4310-946b-d47983164a56"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{proyectos_Proyecto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="175" y="100" width="396" height="20" uuid="35872c66-b3d5-4955-a3b5-389310437397"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cargos_Cargo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="185" y="120" width="386" height="20" uuid="263885c0-8662-4f35-bb49-24ad824e50d6"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{contratos_laborales_Salario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="175" y="140" width="396" height="20" uuid="25ebd438-0ad8-4e8f-a5a9-05c39eafa24b"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{contratos_laborales_Tipo_Contrato}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="175" y="161" width="396" height="20" uuid="63fa33bd-a3ec-4548-b9c5-0c40054ce117"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{contratos_laborales_Fecha_Cont}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="175" y="181" width="396" height="20" uuid="43c37654-d6fe-4741-ad68-6df231999995"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{contratos_laborales_Fecha_Ret}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="43">
+			<subreport>
+				<reportElement x="48" y="0" width="483" height="43" uuid="0755d07f-f3a0-475c-8830-06fafe665d92"/>
+				<subreportParameter name="Cedula">
+					<subreportParameterExpression><![CDATA[$P{Cedula}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\BD TALENTO HUMANO\\BDTalentoHumano\\src\\Reportes\\SubreporteHistorialLaboral.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="52">
+			<staticText>
+				<reportElement x="36" y="12" width="100" height="20" uuid="30209b16-fea8-43dd-a03e-d3760bdeb12a"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Observaciones: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="136" y="12" width="372" height="20" uuid="aebbd883-e67c-4c69-b66c-6115ea179bd0"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[No se encuentra vinculado a la fecha. Su jornada fue de tiempo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="36" y="32" width="111" height="20" uuid="aecac817-bc90-4cce-a432-53575b39a3bd"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[completo.]]></text>
+			</staticText>
+			<line>
+				<reportElement x="36" y="0" width="501" height="2" uuid="7e35d6ce-6d14-4b3b-bd9c-bfab61afe9d2"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</line>
+		</band>
+		<band height="41">
+			<subreport>
+				<reportElement x="36" y="0" width="472" height="41" uuid="73331c0a-db32-4360-8d4d-18599d02e85e"/>
+				<subreportParameter name="Firma">
+					<subreportParameterExpression><![CDATA[$P{Firma}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\BD TALENTO HUMANO\\BDTalentoHumano\\src\\Reportes\\SubreporteFirma.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="74" splitType="Stretch">
+			<textField>
+				<reportElement x="451" y="54" width="80" height="20" uuid="b31ae6ce-9ff3-42d5-b4ba-c66c1a1e5b9c"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="531" y="54" width="40" height="20" uuid="6281509f-1a50-4f85-a5c7-695bba9a75e3"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="228" y="0" width="110" height="14" uuid="8bc4cb6e-f08a-4032-b27b-451b33f6de0b"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[NIT. 890.928.742-1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="114" y="14" width="350" height="19" uuid="a48125a4-7f2e-4a2f-ba33-9d21d7397f9c"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Carrera 52 No. 12 Sur-24 - PBX: 604 55 86 Medellín - Colombia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="124" y="33" width="327" height="20" uuid="cefdb95d-70dd-4f97-a6a2-352e7c387e6e"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[e-mail:principal@consultelsas.com - www.consultelsas.com]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="22" splitType="Stretch"/>
+	</summary>
+</jasperReport>
